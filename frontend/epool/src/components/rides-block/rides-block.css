@@ -1,0 +1,14 @@
+.time{
+    font-size: 35px;
+    margin-top: 25px;
+  }
+
+#fromto{
+    font-size: 40px;
+    margin-top: 0px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+#curve{
+    border-radius: 30px;
+}

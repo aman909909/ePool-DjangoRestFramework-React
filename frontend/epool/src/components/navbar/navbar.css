@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+li{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Rubik', sans-serif;
+}
+
+li{
+    margin-right: 20px;
+}
+
+#nbrand{
+    font-size: 30px;
+}

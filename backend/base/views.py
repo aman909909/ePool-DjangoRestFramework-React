@@ -14,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny, )
 
 class OfferRideViewSet(viewsets.ModelViewSet):
-    queryset = OfferRide.objects.all()
+    queryset = OfferRide.objects.all().order_by('-id')
     serializer_class = OfferRideSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
@@ -28,7 +28,9 @@ class OfferRideViewSet(viewsets.ModelViewSet):
         of.seatsAvailable = request.data['seatsAvailable']
         of.cost = request.data['cost']
         of.name = request.user
-        print(request.user)
+        of.usrname = request.user.username
+        print(request.user.username)
+
         of.save()
         serializer = OfferRideSerializer(of, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -46,6 +48,8 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
         ofreq = OfferRide.objects.get(id=request.data['request_id'])
         pr.request_id = ofreq
         pr.request_to = ofreq.name
+        #pr.description = request.data['description']
+        #pr.seatsReq = request.data['seatsReq']
 
         if pr.request_to == pr.request_from:
             response = {'message': 'Why do you want to select your offer?'}
