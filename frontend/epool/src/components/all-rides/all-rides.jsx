@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import Navbar from '../navbar/navbar';
 import './all-rides.css';
 import RidesBlock from '../rides-block/rides-block'
-
+import RequestForm from '../request-form/request-form'
 
 var FontAwesome = require('react-fontawesome');
 
 class AllRides extends Component {
     state = { 
         offers: [],
+        reqIs : null,
      }
 
      componentDidMount(){
@@ -21,14 +22,25 @@ class AllRides extends Component {
           .then( res => this.setState({offers: res})).then(res => console.log(res))
           .catch( error => console.log(error))
      }
-
+     changeReq = off =>{
+         this.setState({reqIs: off});
+     }
     render() { 
         return ( 
             <div>
                 <Navbar clicked="rides"/>
-                {this.state.offers.map(offer =>{
-                   return <RidesBlock offer={offer}/>
-                })}
+                <div className="row">
+                    <div className="col-8">
+                        {this.state.offers.map(offer =>{
+                            return <RidesBlock offer={offer} changeReq={this.changeReq} button={1}/>
+                        })}
+                    </div>
+                    <div className="col-4">
+                        {this.state.reqIs ? <RequestForm  offer={this.state.reqIs}/>: null}
+                    </div>
+
+                </div>
+
             </div>
          );
     }

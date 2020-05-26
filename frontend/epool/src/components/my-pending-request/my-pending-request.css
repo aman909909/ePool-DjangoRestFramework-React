@@ -1,0 +1,22 @@
+.d-flex{
+    font-size: 25px;
+}
+.d-flex:nth-child(even){
+    background: #cecaca;
+}
+.fa-trash{
+    color: red;
+    margin-right: 15px;
+}
+.fa:hover{
+    font-size: 28px;
+}
+.fa-check-circle{
+    color: green;
+}
+.container{
+    border: #cecaca 1px dotted;
+}
+.clickForDetail{
+    font-size: 15px;
+}

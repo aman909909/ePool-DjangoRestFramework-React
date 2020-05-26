@@ -25,4 +25,3 @@ class PendingRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingRequests
         fields = '__all__'
-

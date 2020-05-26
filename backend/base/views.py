@@ -20,12 +20,12 @@ class OfferRideViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
     def create(self, request, *args, **kwargs):
         of = OfferRide()
-        of.destination1 = request.data['destination1']
-        of.destination2 = request.data['destination2']
+        of.destination1 = request.data['to']
+        of.destination2 = request.data['from']
         of.date = request.data['date']
         of.time = request.data['time']
-        of.carModel = request.data['carModel']
-        of.seatsAvailable = request.data['seatsAvailable']
+        of.carModel = request.data['model']
+        of.seatsAvailable = request.data['seats']
         of.cost = request.data['cost']
         of.name = request.user
         of.usrname = request.user.username
@@ -40,7 +40,7 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
     queryset = PendingRequests.objects.all()
     serializer_class = PendingRequestSerializer
     authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (AllowAny, )
 
     def create(self, request, *args, **kwargs):
         pr = PendingRequests()
@@ -48,9 +48,10 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
         ofreq = OfferRide.objects.get(id=request.data['request_id'])
         pr.request_id = ofreq
         pr.request_to = ofreq.name
-        #pr.description = request.data['description']
-        #pr.seatsReq = request.data['seatsReq']
-
+        pr.description = request.data['description']
+        pr.seatsReq = request.data['seatsReq']
+        print(pr.request_to)
+        print(pr.request_from)
         if pr.request_to == pr.request_from:
             response = {'message': 'Why do you want to select your offer?'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
@@ -63,3 +64,11 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
         pr.save()
         serializer = PendingRequestSerializer(pr, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def list(self, request, *args, **kwargs):
+        pr = PendingRequests.objects.all().filter(request_to = request.user.id)
+        serializer = PendingRequestSerializer(pr, many= True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+

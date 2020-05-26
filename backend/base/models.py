@@ -16,8 +16,8 @@ class PendingRequests(models.Model):
     request_id = models.ForeignKey(OfferRide, on_delete=models.CASCADE)
     request_from = models.ForeignKey(User, related_name='request_from', on_delete=models.CASCADE)
     request_to = models.ForeignKey(User, related_name='request_to', on_delete=models.CASCADE)
-    #description = models.TextField()
-    #seatsReq = models.IntegerField()
+    description = models.TextField()
+    seatsReq = models.IntegerField()
 
 class Notification(models.Model):
     to = models.ForeignKey(User, on_delete=models.CASCADE)

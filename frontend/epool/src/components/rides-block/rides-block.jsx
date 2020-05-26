@@ -27,9 +27,10 @@ class RidesBlock extends Component {
                                 <div className="col-md-4 col-12 mt-5 bg-dark text-light ml-5 p-5 mx-auto" id="curve">
                                     <span className="time"> <FontAwesome name="rupee-sign"/>{this.props.offer.cost} <span id="cost2">/person</span></span>
                                     <br/>
-                                    <span class="time mt-5">{this.props.offer.seatsAvailable} <span id="cost2">seats available</span></span>
+                                    <span className="time mt-5">{this.props.offer.seatsAvailable} <span id="cost2">seats available</span></span>
                                     <br/>
-                                    <button className="btn btn-info mt-5">Send a Request</button>
+                                    {this.props.button ?<button className="btn btn-info mt-5" onClick={() => this.props.changeReq(this.props.offer)}>Send a Request</button>
+                                        : null}
                                 </div>
                             </div>
                         </div>

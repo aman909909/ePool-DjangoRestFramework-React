@@ -6,11 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
 import AllRides from './components/all-rides/all-rides'
 import { Route, BrowserRouter } from 'react-router-dom';
+import OfferForm from './components/offer-form/offer-form'
+import MyPendingRequest from './components/my-pending-request/my-pending-request'
+
 
 const routing = (
     <BrowserRouter>
         <Route exact path="/home" component={App}/>
         <Route exact path="/rides" component={AllRides}/>
+        <Route exact path="/offer" component={OfferForm}/>
+        <Route exact path="/my-pending-requests" component={MyPendingRequest}/>
     </BrowserRouter>
 )
 
