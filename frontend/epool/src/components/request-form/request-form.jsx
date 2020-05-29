@@ -16,6 +16,9 @@ class RequestForm extends Component {
          this.setState({val: cval});
      }
      submitClicked = () =>{
+        let cval = this.state.val;
+        cval['request_id'] = this.props.offer.id;
+        this.setState({val: cval});
         fetch('http://127.0.0.1:8000/pending-requests/', {
             method: 'POST',
             headers: {
@@ -31,9 +34,10 @@ class RequestForm extends Component {
 
 
     render() { 
+        
         return ( 
             <div className="mr-5">
-                <div className="container mt-5 jumbotron  pt-4">
+                <div className="container mt-5 jumbotron bg-dark text-light pt-4">
                         <h2 className="mb-5">{this.props.offer.destination1} <FontAwesome name="arrow-right"/> {this.props.offer.destination2}</h2>
                         <div className="form-group">
                                 <label for="f1">Description</label>
@@ -44,7 +48,8 @@ class RequestForm extends Component {
                                 <input type="number" className="form-control" id="f1" name="seatsReq" value={this.state.val['seatsReq']} onChange={this.changed}/>
                         </div>
     
-                        <button className="btn btn-secondary" onClick={this.submitClicked}>Submit</button>
+                        <button className="btn btn-success" onClick={this.submitClicked}>Submit</button>
+                        <button className="btn btn-warning ml-3" onClick={this.props.cancelClicked}>Cancel</button>
                        
 
                 </div>

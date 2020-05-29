@@ -33,15 +33,15 @@ class Navbar extends Component {
                                 </li>
                             </ul>
                             <ul className="navbar-nav mr-auto ml-auto">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <FontAwesome name="caret-square-down"/>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" name="my-pending-requests" onClick={this.clickedFunction}> My Pending Requests</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a className="dropdown-item" name="my-pending-requests" onClick={this.clickedFunction}> My Pending Requests</a>
+                                    <a className="dropdown-item" href="#">Another action</a>
+                                    <div className="dropdown-divider"></div>
+                                    <a className="dropdown-item" href="#">Something else here</a>
         
                                     </div>
                                 </li>

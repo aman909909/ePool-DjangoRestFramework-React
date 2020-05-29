@@ -57,11 +57,11 @@ class OfferForm extends Component {
                         </div>
                         <div className="form-group">
                                 <label for="f6">Seats Available</label>
-                                <input type="text" className="form-control" id="f6" name="seats" value={this.state.val['seats']} onChange={this.changed}/>
+                                <input type="number" className="form-control" id="f6" name="seats" value={this.state.val['seats']} onChange={this.changed}/>
                         </div>
                         <div className="form-group">
                                 <label for="f7">Cost per seat</label>
-                                <input type="text" className="form-control" id="f7" name="cost" value={this.state.val['cost']} onChange={this.changed}/>
+                                <input type="number" className="form-control" id="f7" name="cost" value={this.state.val['cost']} onChange={this.changed}/>
                         </div>
 
                         <button className="btn btn-secondary" onClick={this.submitClicked}>Submit</button>

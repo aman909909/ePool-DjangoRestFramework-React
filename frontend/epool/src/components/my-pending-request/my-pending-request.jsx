@@ -57,7 +57,7 @@ class MyPendingRequest extends Component {
                     
                     {this.state.req.map(r => {
                         return (
-                            <div key={r.request_id} className="d-flex justify-content-around">
+                            <div key={r.id} className="d-flex justify-content-around">
                                 <span onClick={() => this.clickedDetail(r.request_id)}>Request ID: {r.request_id}  <span className="clickForDetail">
                                     (Click for details)</span></span>
                                 <span >Seats Required: {r.seatsReq}</span>

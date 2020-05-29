@@ -23,20 +23,24 @@ class AllRides extends Component {
           .catch( error => console.log(error))
      }
      changeReq = off =>{
+         console.log(off);
          this.setState({reqIs: off});
+     }
+     cancelClicked = () =>{
+         this.setState({reqIs: null});
      }
     render() { 
         return ( 
             <div>
                 <Navbar clicked="rides"/>
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-9">
                         {this.state.offers.map(offer =>{
-                            return <RidesBlock offer={offer} changeReq={this.changeReq} button={1}/>
+                            return <div key={offer.id}><RidesBlock offer={offer} changeReq={this.changeReq} button={1}/></div>
                         })}
                     </div>
-                    <div className="col-4">
-                        {this.state.reqIs ? <RequestForm  offer={this.state.reqIs}/>: null}
+                    <div className="col-3">
+                        <div className="sti">{this.state.reqIs ? <RequestForm  offer={this.state.reqIs} cancelClicked={this.cancelClicked}/>: null}</div>
                     </div>
 
                 </div>

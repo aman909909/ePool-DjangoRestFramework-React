@@ -50,7 +50,7 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
         pr.request_to = ofreq.name
         pr.description = request.data['description']
         pr.seatsReq = request.data['seatsReq']
-        print(pr.request_to)
+        print(ofreq.destination1)
         print(pr.request_from)
         if pr.request_to == pr.request_from:
             response = {'message': 'Why do you want to select your offer?'}

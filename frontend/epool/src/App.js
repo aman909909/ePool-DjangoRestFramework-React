@@ -8,7 +8,7 @@ class App extends Component {
     return (  
       <div>
         <Navbar clicked="home"/>
-      <RequestForm/>
+        
       </div>
     );
   }
