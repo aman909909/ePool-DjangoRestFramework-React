@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from '../navbar/navbar'
+import ReactNotification from 'react-notifications-component'
+import {store} from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import {withCookies} from 'react-cookie';
 
 class OfferForm extends Component {
     state = { 
@@ -11,28 +15,41 @@ class OfferForm extends Component {
             'model': '',
             'seats': '',
             'cost': ''
-        }
+        },
+        token: this.props.cookies.get('mr-token'),
      }
      changed = evt =>{
          let cval = this.state.val;
          cval[`${evt.target['name']}`] = evt.target.value;
          this.setState({val: cval});
      }
+
+     notificationFunction = res =>{
+             
+             store.addNotification({
+                     title: 'Yayyyyyyy!',
+                     message: 'Ride offer posted, letss wait!!',
+                     type: 'success',
+                     container: 'top-right'
+             })
+             setTimeout(() => {window.location='/rides';},3000);
+     }
      submitClicked = () =>{
         fetch('http://127.0.0.1:8000/offer/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token 99a6fdeba117420ed374a118a522b5dabc454f4b`,
+                'Authorization': `Token ${this.state.token}`,
             },
             body: JSON.stringify(this.state.val)
             }).then( resp => resp.json())
-            .then( res => console.log(res))
+            .then( res => console.log(res)).then(res => this.notificationFunction(res))
             .catch( error => console.log(error))
      }
     render() { 
         return ( 
             <div>
+                <ReactNotification/>
                 <Navbar clicked="offer"/>
                 <div className="container mt-5 jumbotron">
                         <div className="form-group">
@@ -74,4 +91,4 @@ class OfferForm extends Component {
     }
 }
  
-export default OfferForm;
+export default withCookies(OfferForm);

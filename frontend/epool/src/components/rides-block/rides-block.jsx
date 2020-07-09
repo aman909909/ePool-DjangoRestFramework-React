@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './rides-block.css';
+
 var FontAwesome = require('react-fontawesome');
 
 class RidesBlock extends Component {

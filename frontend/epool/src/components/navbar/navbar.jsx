@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import './navbar.css';
+import {withCookies} from 'react-cookie';
 var FontAwesome = require('react-fontawesome');
 
 class Navbar extends Component {
     state = { 
-        
+        token : this.props.cookies.get('mr-token'),
+        name: "",
      }
 
     clickedFunction = evt =>{
         
         window.location.href = `/${evt.target.name}`;
     }
+
+    /*componentDidMount(){
+
+        fetch('http://127.0.0.1:8000/user/', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Token ${this.state.token}`
+            }
+          }).then( resp => resp.json())
+          .then( res => console.log(res))
+          .catch( error => console.log(error))
+     }*/
+
     render() { 
         return ( 
             <div>
@@ -39,9 +54,7 @@ class Navbar extends Component {
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a className="dropdown-item" name="my-pending-requests" onClick={this.clickedFunction}> My Pending Requests</a>
-                                    <a className="dropdown-item" href="#">Another action</a>
-                                    <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Something else here</a>
+
         
                                     </div>
                                 </li>
@@ -55,4 +68,4 @@ class Navbar extends Component {
     }
 }
  
-export default Navbar;
+export default withCookies(Navbar);

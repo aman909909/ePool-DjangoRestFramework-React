@@ -8,9 +8,12 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
+    "react-animated-css": "^1.2.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-fontawesome": "^1.7.1",
     "react-notifications": "^1.6.0",
+    "react-notifications-component": "^2.4.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },

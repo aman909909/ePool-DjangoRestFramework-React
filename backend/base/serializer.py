@@ -22,6 +22,10 @@ class OfferRideSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PendingRequestSerializer(serializers.ModelSerializer):
+    message = serializers.SerializerMethodField()
     class Meta:
         model = PendingRequests
         fields = '__all__'
+
+    def get_message(self, obj):
+        return ('909')
