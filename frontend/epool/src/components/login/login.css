@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+.loginJumbo{
+    margin-top: 15em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.label{
+    font-size: 1.4em;
+    font-family: 'Rubik', sans-serif;
+    color: white;
+}
+#credText{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #f98181;
+}

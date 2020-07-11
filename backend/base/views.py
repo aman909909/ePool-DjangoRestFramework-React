@@ -9,6 +9,17 @@ from .serializer import UserSerializer, OfferRideSerializer, PendingRequestSeria
 from .models import OfferRide, PendingRequests
 
 
+class UserFromTokenViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (AllowAny, )
+
+    def create(self, request, *args, **kwargs):
+        user = Token.objects.get(key=request.data['token']).user
+        serializer = UserSerializer(user, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
