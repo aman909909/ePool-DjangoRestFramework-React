@@ -43,9 +43,6 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ml-auto mr-auto">
-                                <li className={this.props.clicked === "home" ? "active nav-item" : "nav-item"}>
-                                    <a className="nav-link" name="home" onClick={this.clickedFunction}>Home <span className="sr-only">(current)</span></a>
-                                </li>
                                 <li className={this.props.clicked === "rides" ? "active nav-item" : "nav-item"}>
                                     <a className="nav-link" name="rides" onClick={this.clickedFunction}>Rides</a>
                                 </li>
@@ -65,6 +62,7 @@ class Navbar extends Component {
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     
                                     <a className="dropdown-item" name="my-pending-requests" onClick={this.clickedFunction}> My Pending Requests</a>
+                                    <a className="dropdown-item" name="ur" onClick={() => {window.location='/urfy'}}> Upcoming Rides</a>
                                     <a className="dropdown-item" name="logout" onClick={this.logoutClicked}> Logout</a>
 
 

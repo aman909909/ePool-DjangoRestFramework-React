@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
-from .serializer import UserSerializer, OfferRideSerializer, PendingRequestSerializer
-from .models import OfferRide, PendingRequests
+from .serializer import UserSerializer, OfferRideSerializer, PendingRequestSerializer, URforYouSerializer
+from .models import OfferRide, PendingRequests, URforYou
 
 
 class UserFromTokenViewSet(viewsets.ModelViewSet):
@@ -86,6 +86,31 @@ class PendingRequestsViewSet(viewsets.ModelViewSet):
         pr = PendingRequests.objects.all().filter(request_to = request.user.id)
         serializer = PendingRequestSerializer(pr, many= True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class URforYouViewSet(viewsets.ModelViewSet):
+    queryset = URforYou.objects.all()
+    serializer_class = URforYouSerializer
+    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+
+    def list(self, request, *args, **kwargs):
+        ur = URforYou.objects.all().filter(ride_for = request.user.id)
+        serializer = URforYouSerializer(ur, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        ur = URforYou()
+        ofreq = OfferRide.objects.get(id=request.data['req_id'])
+        ofreq.seatsAvailable-=request.data['seats']
+        ofreq.save()
+        ur.ride_info = ofreq
+        usr = User.objects.get(id = request.data['req_by'])
+        ur.ride_for = usr
+        ur.save()
+        serilaizer = URforYouSerializer(ur, many=False)
+        return Response(serilaizer.data, status=status.HTTP_200_OK)
+
+
 
 
 

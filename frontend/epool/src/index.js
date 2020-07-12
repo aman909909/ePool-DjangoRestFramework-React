@@ -11,6 +11,7 @@ import OfferForm from './components/offer-form/offer-form'
 import Signup from './components/signup/signup';
 import MyPendingRequest from './components/my-pending-request/my-pending-request'
 import {CookiesProvider} from 'react-cookie';
+import Urfy from './components/URFY/urfy';
 
 
 const routing = (
@@ -21,6 +22,7 @@ const routing = (
         <Route exact path="/rides" component={AllRides}/>
         <Route exact path="/offer" component={OfferForm}/>
         <Route exact path="/signup" component={Signup}/>
+        <Route exact path="/urfy" component={Urfy}/>
         <Route exact path="/my-pending-requests" component={MyPendingRequest}/>
       </CookiesProvider>
     </BrowserRouter>

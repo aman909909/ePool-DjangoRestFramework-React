@@ -49,6 +49,23 @@ class MyPendingRequest extends Component {
           .catch( error => console.log(error))
      }
 
+     okClicked = r =>{
+         //console.log(r.request_id);
+        fetch(`http://127.0.0.1:8000/ur-for-you/`,{
+            method : 'POST',
+            headers: {'Content-Type' : 'application/json',
+            'Authorization': `Token ${this.state.token}`
+            },
+            body: JSON.stringify({
+                'req_id': r.request_id,
+                'req_by': r.request_from,
+                'seats': r.seatsReq,
+            })
+        }).then(resp => resp.json())
+            .then(res=> console.log(res)).then(resp => this.delClicked(r))
+                .catch(error =>console.log(error))
+     }
+
     render() { 
         return ( 
             <div>
@@ -64,7 +81,7 @@ class MyPendingRequest extends Component {
                                 <span >Seats Required: {r.seatsReq}</span>
                                 <span>
                                     <FontAwesome name="trash" onClick={() => this.delClicked(r)}/>  
-                                    <FontAwesome name="check-circle"/>
+                                    <FontAwesome name="check-circle" onClick={() => this.okClicked(r)}/>
                                 </span>
                             </div>
                         );
