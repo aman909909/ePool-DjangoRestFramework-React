@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .models import OfferRide, PendingRequests
+from .models import OfferRide, PendingRequests, URforYou
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,3 +29,9 @@ class PendingRequestSerializer(serializers.ModelSerializer):
 
     def get_message(self, obj):
         return ('909')
+
+class URforYouSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = URforYou
+        fields = '__all__'
+

@@ -19,8 +19,10 @@ class PendingRequests(models.Model):
     description = models.TextField()
     seatsReq = models.IntegerField()
 
-class Notification(models.Model):
-    to = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
+class URforYou(models.Model):
+    ride_info = models.ForeignKey(OfferRide, on_delete=models.CASCADE)
+    ride_for = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 
 
